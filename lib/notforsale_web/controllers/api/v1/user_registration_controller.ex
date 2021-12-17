@@ -3,7 +3,7 @@ defmodule NotforsaleWeb.Api.V1.UserRegistrationController do
 
   alias Notforsale.Accounts
   alias Notforsale.Accounts.User
-  alias Notforsale.Guardian
+  alias NotforsaleWeb.Guardian
 
   def new(conn, _params) do
     changeset = Accounts.change_user_registration(%User{})

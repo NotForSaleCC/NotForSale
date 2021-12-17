@@ -1,5 +1,5 @@
 # lib/my_app/guardian.ex
-defmodule Notforsale.Guardian do
+defmodule NotforsaleWeb.Guardian do
   use Guardian, otp_app: :notforsale
 
   alias Notforsale.Accounts
@@ -14,6 +14,7 @@ defmodule Notforsale.Guardian do
     {:ok, sub}
   end
 
+  @spec resource_from_claims(nil | maybe_improper_list | map) :: {:ok, any}
   def resource_from_claims(claims) do
     # Here we'll look up our resource from the claims, the subject can be
     # found in the `"sub"` key. In `above subject_for_token/2` we returned

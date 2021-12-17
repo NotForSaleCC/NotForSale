@@ -3,7 +3,7 @@ defmodule NotforsaleWeb.Api.V1.UserSessionController do
 
   alias Notforsale.Accounts
   alias Notforsale.Accounts.User
-  alias Notforsale.Guardian
+  alias NotforsaleWeb.Guardian
 
 
   def create(conn, %{"email" => nil}) do
