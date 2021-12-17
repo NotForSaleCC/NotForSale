@@ -19,6 +19,9 @@ defmodule NotforsaleWeb.Router do
 
   pipeline :require_jwt do
     plug NotforsaleWeb.Guardian.AuthPipeline
+    plug Guardian.Plug.VerifySession
+    plug Guardian.Plug.LoadResource
+    plug NotforsaleWeb.Guardian.CurrentUser
   end
 []
   # JSON Authentication routes

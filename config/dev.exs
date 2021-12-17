@@ -2,7 +2,7 @@ import Config
 
 # Configure your database
 config :notforsale, Notforsale.Repo,
-  username: "postgres",
+  username: "notforsale",
   password: "notforsale",
   database: "postgres",
   hostname: "localhost",

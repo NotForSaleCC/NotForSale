@@ -33,6 +33,7 @@ defmodule Notforsale.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:bodyguard, "~> 2.4"},
       {:poison, "~> 5.0"},
       {:guardian, "~> 2.0"},
       {:argon2_elixir, "~> 2.0"},

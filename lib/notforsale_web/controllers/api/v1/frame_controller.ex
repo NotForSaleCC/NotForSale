@@ -12,6 +12,8 @@ defmodule NotforsaleWeb.Api.V1.FrameController do
   end
 
   def create(conn, %{"frame" => frame_params}) do
+    frame_params = Map.merge(frame_params, %{"user_id" => conn.assigns.current_user.id})
+
     with {:ok, %Frame{} = frame} <- Devices.create_frame(frame_params) do
       conn
       |> put_status(:created)
