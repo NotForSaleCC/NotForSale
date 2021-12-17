@@ -51,7 +51,8 @@ config :phoenix, :json_library, Jason
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"
 
-config :notforsale, Notforsale.Guardian,
+config :notforsale, NotforsaleWeb.Guardian,
+  issuer: :notforsale,
   allowed_algos: ["HS512"],
   secret_key: %{
     "k" => "fRV-ylauusXWlaUG2O0rINoWxxPejlaXBb1JK5nmxWZTgHZTLOBifrjGIaC7ZuuVDWOMW2ewEI9V9fW4UjdPog",

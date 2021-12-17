@@ -18,11 +18,11 @@ defmodule NotforsaleWeb.Router do
   end
 
   pipeline :require_jwt do
-    plug Guardian.Plug.EnsureAuthenticated
+    plug NotforsaleWeb.Guardian.AuthPipeline
   end
-
+[]
   # JSON Authentication routes
-  scope "/api/v1", NotforsaleWeb.Api.V1, as: :json_api do
+  scope "/api/v1", NotforsaleWeb.Api.V1, as: :api_v1 do
     pipe_through :api
 
     post "/users/register", UserRegistrationController, :create
@@ -34,10 +34,10 @@ defmodule NotforsaleWeb.Router do
   end
 
   # JWT Protected routes
-  scope "/api/v1", Notforsale.JsonApi, as: :json_api do
+  scope "/api/v1", NotforsaleWeb.Api.V1, as: :api_v1 do
     pipe_through [:api, :require_jwt]
 
-    # Add protected routes here...
+    resources "/frames", FrameController, except: [:new, :edit]
   end
 
   scope "/", NotforsaleWeb do
