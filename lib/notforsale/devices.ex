@@ -17,8 +17,9 @@ defmodule Notforsale.Devices do
       [%Frame{}, ...]
 
   """
-  def list_frames do
-    Repo.all(Frame)
+  def list_frames(user) do
+    query = from f in Frame, where: f.user_id == ^user.id
+    Repo.all(query)
   end
 
   @doc """
@@ -35,7 +36,15 @@ defmodule Notforsale.Devices do
       ** (Ecto.NoResultsError)
 
   """
-  def get_frame!(id), do: Repo.get!(Frame, id)
+  def get_frame!(id, user), do: Repo.get_by!(Frame, [id: id, user_id: user.id])
+  def get_frame_by_client_id!(client_id, user) do
+    query =
+      from f in Frame,
+      where: f.user_id == ^user.id and f.client_id == ^client_id,
+      limit: 1
+
+    Repo.one(query)
+  end
 
   @doc """
   Creates a frame.
@@ -49,7 +58,9 @@ defmodule Notforsale.Devices do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_frame(attrs \\ %{}) do
+  def create_frame(attrs \\ %{}, user) do
+    attrs = Map.merge(attrs, %{"user_id" => user.id})
+
     %Frame{}
     |> Frame.changeset(attrs)
     |> Repo.insert()

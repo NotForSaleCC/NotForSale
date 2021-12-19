@@ -41,6 +41,7 @@ defmodule NotforsaleWeb.Router do
     pipe_through [:api, :require_jwt]
 
     resources "/frames", FrameController, except: [:new, :edit]
+    post "/frames/print", FrameController, :print
   end
 
   scope "/", NotforsaleWeb do

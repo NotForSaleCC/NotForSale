@@ -5,7 +5,6 @@ defmodule NotforsaleWeb.Api.V1.UserSessionController do
   alias Notforsale.Accounts.User
   alias NotforsaleWeb.Guardian
 
-
   def create(conn, %{"email" => nil}) do
     conn
     |> put_status(401)
@@ -18,6 +17,7 @@ defmodule NotforsaleWeb.Api.V1.UserSessionController do
         {:ok, jwt, _full_claims} = Guardian.encode_and_sign(user, %{})
 
         conn
+        |> put_status(201)
         |> render("create.json", user: user, jwt: jwt)
       nil ->
         conn

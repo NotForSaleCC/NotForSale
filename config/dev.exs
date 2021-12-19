@@ -2,10 +2,11 @@ import Config
 
 # Configure your database
 config :notforsale, Notforsale.Repo,
-  username: "notforsale",
-  password: "notforsale",
-  database: "postgres",
-  hostname: "localhost",
+  username: System.get_env("POSTGRES_USER"),
+  password: System.get_env("POSTGRES_PASSWORD"),
+  database: System.get_env("POSTGRES_DB"),
+  hostname: System.get_env("POSTGRES_HOST"),
+  port: 5432,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
@@ -18,7 +19,7 @@ config :notforsale, Notforsale.Repo,
 config :notforsale, NotforsaleWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-  http: [ip: {127, 0, 0, 1}, port: 4000],
+  http: [ip: {0, 0, 0, 0}, port: 4000],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
