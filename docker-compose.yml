@@ -32,7 +32,7 @@ services:
     environment:
       - PHX_ENV=dev
       - SECRET_KEY_BASE=${SECRET_KEY_BASE}
-      - MOSQUITTO_SERVER=mosquitto
+      - MOSQUITTO_SERVER=nfs-mosquitto
       - MOSQUITTO_USERNAME=${MOSQUITTO_USERNAME}
       - MOSQUITTO_PASSWORD=${MOSQUITTO_PASSWORD}
       - POSTGRES_DB=${POSTGRES_DB}
