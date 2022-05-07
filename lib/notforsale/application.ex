@@ -15,9 +15,21 @@ defmodule Notforsale.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Notforsale.PubSub},
       # Start the Endpoint (http/https)
-      NotforsaleWeb.Endpoint
+      NotforsaleWeb.Endpoint,
       # Start a worker by calling: Notforsale.Worker.start_link(arg)
       # {Notforsale.Worker, arg}
+      {
+        Tortoise.Connection,
+        [
+          client_id: Notforsale,
+          server: {Tortoise.Transport.Tcp, host: System.get_env("MOSQUITTO_SERVER") || "localhost", port: 1883},
+          user_name: System.get_env("MOSQUITTO_USERNAME") || "notforsale",
+          password: System.get_env("MOSQUITTO_PASSWORD") || "notforsale",
+          handler: {
+            Tortoise.Handler.Logger, []
+          }
+        ]
+      }
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

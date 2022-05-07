@@ -5,6 +5,7 @@ defmodule Notforsale.Repo.Migrations.CreateFrames do
     create table(:frames) do
       add :client_id, :string
       add :topic, :string
+      add :user_id, references(:users)
 
       timestamps()
     end

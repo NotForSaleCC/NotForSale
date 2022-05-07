@@ -21,4 +21,11 @@ defmodule NotforsaleWeb.FallbackController do
     |> put_view(NotforsaleWeb.ErrorView)
     |> render(:"404")
   end
+
+  def call(conn, {:error, :unauthorized}) do
+    conn
+    |> put_status(:forbidden)
+    |> put_view(MyAppWeb.ErrorView)
+    |> render(:"403")
+  end
 end

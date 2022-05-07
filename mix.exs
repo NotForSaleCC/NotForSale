@@ -33,6 +33,7 @@ defmodule Notforsale.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:cors_plug, "~> 2.0"},
       {:poison, "~> 5.0"},
       {:guardian, "~> 2.0"},
       {:argon2_elixir, "~> 2.0"},
@@ -51,7 +52,8 @@ defmodule Notforsale.MixProject do
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
-      {:plug_cowboy, "~> 2.5"}
+      {:plug_cowboy, "~> 2.5"},
+      {:tortoise, "~> 0.10.0"}
     ]
   end
 
