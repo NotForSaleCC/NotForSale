@@ -15,5 +15,6 @@ defmodule Notforsale.Devices.Frame do
     frame
     |> cast(attrs, [:client_id, :topic, :user_id])
     |> validate_required([:client_id, :topic, :user_id])
+    |> unique_constraint(:topic)
   end
 end

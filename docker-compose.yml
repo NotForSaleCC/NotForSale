@@ -2,7 +2,7 @@ version: "3.9"
 volumes:
   node_modules:
   build:
-  pg_data: {}
+  nfs_pg_data: {}
 services:
   nfs-postgres:
     image: postgres:latest
@@ -10,7 +10,7 @@ services:
     - POSTGRES_USER=${POSTGRES_USER}
     - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
-      - pg_data:/var/lib/postgresql/data
+      - nfs_pg_data:/var/lib/postgresql/data
     ports:
       - "5779:5432"
   nfs-mosquitto:
@@ -27,8 +27,9 @@ services:
       - ./config/mosquitto/data:/mosquitto/data
       - ./config/mosquitto/log:/mosquitto/log
   nfs-phoenix:
+    tty: true
+    stdin_open: true
     build: .
-    command: "mix phx.server"
     environment:
       - PHX_ENV=dev
       - SECRET_KEY_BASE=${SECRET_KEY_BASE}
@@ -48,3 +49,12 @@ services:
     depends_on:
       - nfs-postgres
       - nfs-mosquitto
+  nfs-server:
+    image: nginx:latest
+    volumes:
+      - ./frontend/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    ports: 
+      - "8888:8888"
+    # command: /bin/bash -c "envsubst < /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'" 
+    depends_on:
+      - nfs-phoenix
