@@ -45,8 +45,7 @@ defmodule NotforsaleWeb.Api.V1.FrameController do
   def print(conn, %{"client_id" => client_id, "image_url" => image_url, "action" => action}) do
     frame = Devices.get_frame_by_client_id!(client_id, conn.assigns.current_user)
     message = %{image: image_url, action: action} |> Poison.encode!
-
-    Tortoise.publish(Notforsale, "#{frame.client_id}/print", message, qos: 2)
+    Tortoise.publish(Notforsale, frame.topic, message, qos: 2)
     json(conn, %{ status: :ok })
   end
 
