@@ -49,10 +49,20 @@ services:
     depends_on:
       - nfs-postgres
       - nfs-mosquitto
+  nfs-frame:
+    tty: true
+    stdin_open: true
+    build: ./frontend/frame
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/frame:/app
+    depends_on:
+      - nfs-phoenix
   nfs-server:
     image: nginx:latest
     volumes:
-      - ./frontend/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./config/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
     ports: 
       - "8888:8888"
     # command: /bin/bash -c "envsubst < /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'" 
