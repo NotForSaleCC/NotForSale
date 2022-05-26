@@ -54,7 +54,7 @@ services:
     stdin_open: true
     build: ./frontend/frame
     ports:
-      - "3000:3000"
+      - "3000"
     volumes:
       - ./frontend/frame:/app
     depends_on:
