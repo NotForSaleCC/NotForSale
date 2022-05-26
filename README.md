@@ -8,7 +8,7 @@ Execute `docker-compose up` to start containers.
 
 | Container     | Port          |
 | ------------- | ------------- |
-| nfs-frame     | **3000:3000** |
+| nfs-frame     | **3000 (private)** |
 | nfs-mosquitto | **1883:1883** |
 | nfs-phoenix   | **4000:4000** |
 | nfs-postgres  | **5432:5432** |
