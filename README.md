@@ -1,10 +1,27 @@
+```
+
+           :~77777!!!^:.
+        .~7J7^^::^^^~!77!~::::
+      ^7JJ~7~        .^7?JY?^:
+    ^7J5?. ^?:    .~7!~:..~?7.
+   !?!J?.   !7. ^7?!^      ^J!.
+  !?^JJ:    .JJ??~.         7Yx   NotForSale: Sustainable art for a sustainable future
+ ^J^^Y7     ~J5?.           7Yx                                          notforsale.cc
+.?J:^Y7.  :??^^J?:          7Yx
+ !Y7^JJ^ ^J7.  :?Y~.       ^J7
+  !YJJYJ7?^     .~J?~.    ~Y?.
+   :!?Y55J!^:::...:!J?!~^7Y?:
+      ^?77??JJJJJJJJJ?JYJ?^.
+           ..:::^^^^^^::.
+
+```
 # Not For Sale
 
-The stack that allows to communicate with `notforsale_client` application built for Raspberry Pi & E-Ink display that allows to pick and render the image remotely.
+Our stack enables communication with the `notforsale_client` application, which was designed to work with Raspberry Pi and e-ink displays. This allows you to select and display images remotely.
 
 ## How to use it?
 
-Execute `docker-compose up` to start containers.
+To spin-up the services run the `docker-compose up` command.
 
 | Container     | Port          |
 | ------------- | ------------- |
